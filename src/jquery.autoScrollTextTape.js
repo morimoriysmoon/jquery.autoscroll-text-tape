@@ -45,6 +45,17 @@ import './styles.css';
             this.startEngine();
         },
 
+        refresh(renewedElement) {
+            this.$wrapper = $(renewedElement);
+            this.$wrapper.addClass('autoscroll-tape__wrapper');
+            this.$wrapper.html(`<div class="autoscroll-tape__tape">${this.$wrapper.text()}</div>`);
+            this.$textContainer = this.$wrapper.find('.autoscroll-tape__tape');
+      
+            this.stopMoveTextTape(() => {
+              this.compareWidthOfContainers();
+            });
+        },
+      
         startEngine() {
             this.compareWidthOfContainers();
             this.watchWindowResize();
